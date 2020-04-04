@@ -13,7 +13,6 @@ import org.jetbrains.exposed.sql.transactions.transaction
 import java.math.BigDecimal
 import java.sql.*
 
-
 object Db {
 
     fun init(config: ApplicationConfig) {
@@ -33,7 +32,6 @@ object Db {
         hikariConfig.maximumPoolSize = 3
         hikariConfig.isAutoCommit = false
         hikariConfig.transactionIsolation = "TRANSACTION_REPEATABLE_READ"
-        hikariConfig.validate()
         return HikariDataSource(hikariConfig)
     }
 
