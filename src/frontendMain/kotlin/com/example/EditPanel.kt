@@ -2,10 +2,14 @@ package com.example
 
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import pl.treksoft.kvision.Application
+import pl.treksoft.kvision.core.StringPair
 import pl.treksoft.kvision.core.onEvent
+import pl.treksoft.kvision.dropdown.DropDown
 import pl.treksoft.kvision.form.FormPanel
 import pl.treksoft.kvision.form.formPanel
 import pl.treksoft.kvision.form.check.CheckBox
+import pl.treksoft.kvision.form.select.SimpleSelect
 import pl.treksoft.kvision.form.text.Text
 import pl.treksoft.kvision.html.button
 import pl.treksoft.kvision.html.ButtonStyle
@@ -26,6 +30,10 @@ object EditPanel : StackPanel() {
 
         formPanel = formPanel {
             add(ApiKey::key, Text(label = "${tr("Api key")}:").apply { maxlength = 255 })
+            add(
+                ApiKey::encryptionType,
+                SimpleSelect(options = EncryptionTypes.pairs, label = "Encryption type")
+            )
             add(ApiKey::favourite, CheckBox(label = tr("Mark as favourite")))
 
             add(HPanel(spacing = 10) {
@@ -54,6 +62,7 @@ object EditPanel : StackPanel() {
 
     fun edit(index: Int) {
         val key = Model.apiKeys[index]
+        println("Editing: $key")
         formPanel.setData(key)
         open(key.id)
     }

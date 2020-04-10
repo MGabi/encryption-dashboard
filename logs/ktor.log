@@ -1,7 +1,58 @@
-[2020-04-04 17:02:51,725]-[main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
-[2020-04-04 17:08:21,613]-[main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
-[2020-04-04 17:15:53,463]-[main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
-[2020-04-04 17:18:25,867]-[main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
-[2020-04-04 17:27:19,276]-[main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
-[2020-04-04 17:32:11,060]-[main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
-[2020-04-04 17:35:38,726]-[main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+[2020-04-10 17:51:20,352]-[main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+[2020-04-10 17:51:20,977]-[main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2020-04-10 17:51:21,174]-[main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2020-04-10 17:51:21,563]-[main] INFO  Application - Responding at http://0.0.0.0:8080
+[2020-04-10 17:56:49,527]-[main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+[2020-04-10 17:56:50,044]-[main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2020-04-10 17:57:07,189]-[main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+[2020-04-10 17:57:07,697]-[main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2020-04-10 17:57:33,890]-[main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+[2020-04-10 17:57:34,418]-[main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2020-04-10 17:57:57,488]-[main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+[2020-04-10 17:57:58,132]-[main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2020-04-10 17:58:05,812]-[main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+[2020-04-10 17:58:39,104]-[main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2020-04-10 17:58:57,763]-[main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+[2020-04-10 17:58:58,302]-[main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2020-04-10 17:58:58,477]-[main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2020-04-10 17:58:58,915]-[main] INFO  Application - Responding at http://0.0.0.0:8080
+[2020-04-10 18:00:56,800]-[main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+[2020-04-10 18:00:57,461]-[main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2020-04-10 18:00:57,691]-[main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2020-04-10 18:00:58,135]-[main] INFO  Application - Responding at http://0.0.0.0:8080
+[2020-04-10 18:03:45,159]-[main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+[2020-04-10 18:03:45,798]-[main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2020-04-10 18:03:46,088]-[main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2020-04-10 18:03:46,631]-[main] INFO  Application - Responding at http://0.0.0.0:8080
+[2020-04-10 18:06:23,375]-[main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+[2020-04-10 18:06:24,100]-[main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2020-04-10 18:06:24,524]-[main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2020-04-10 18:06:25,217]-[main] INFO  Application - Responding at http://0.0.0.0:8080
+[2020-04-10 18:08:13,021]-[main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+[2020-04-10 18:08:13,812]-[main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2020-04-10 18:08:14,060]-[main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2020-04-10 18:08:14,647]-[main] INFO  Application - Responding at http://0.0.0.0:8080
+[2020-04-10 18:10:43,230]-[main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+[2020-04-10 18:10:44,490]-[main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2020-04-10 18:10:44,800]-[main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2020-04-10 18:10:45,456]-[main] INFO  Application - Responding at http://0.0.0.0:8080
+[2020-04-10 18:12:18,508]-[main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+[2020-04-10 18:12:19,073]-[main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2020-04-10 18:12:19,266]-[main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2020-04-10 18:12:19,651]-[main] INFO  Application - Responding at http://0.0.0.0:8080
+[2020-04-10 18:16:10,106]-[main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+[2020-04-10 18:16:10,792]-[main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2020-04-10 18:16:11,159]-[main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2020-04-10 18:16:11,828]-[main] INFO  Application - Responding at http://0.0.0.0:8080
+[2020-04-10 18:25:13,590]-[main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+[2020-04-10 18:25:14,359]-[main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2020-04-10 18:25:14,660]-[main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2020-04-10 18:25:15,206]-[main] INFO  Application - Responding at http://0.0.0.0:8080
+[2020-04-10 18:26:59,434]-[main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+[2020-04-10 18:27:00,247]-[main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2020-04-10 18:27:00,634]-[main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2020-04-10 18:27:01,440]-[main] INFO  Application - Responding at http://0.0.0.0:8080
+[2020-04-10 18:30:33,111]-[main] INFO  Application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+[2020-04-10 18:30:33,624]-[main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[2020-04-10 18:30:33,801]-[main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[2020-04-10 18:30:34,145]-[main] INFO  Application - Responding at http://0.0.0.0:8080
