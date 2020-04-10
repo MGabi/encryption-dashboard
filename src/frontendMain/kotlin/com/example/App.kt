@@ -34,7 +34,7 @@ class App : Application() {
             }
         }
         GlobalScope.launch {
-            Model.getAddressList()
+            Model.getApiKeysList()
         }
     }
 }

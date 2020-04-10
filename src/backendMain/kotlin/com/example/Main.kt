@@ -87,7 +87,7 @@ fun Application.main() {
                 call.sessions.clear<Profile>()
                 call.respondRedirect("/")
             }
-            applyRoutes(AddressServiceManager)
+            applyRoutes(ApiKeysServiceManager)
             applyRoutes(ProfileServiceManager)
         }
     }

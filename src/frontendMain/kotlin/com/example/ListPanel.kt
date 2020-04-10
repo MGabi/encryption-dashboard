@@ -29,10 +29,7 @@ object ListPanel : SimplePanel() {
         padding = 10.px
 
         val table = Table(types = setOf(TableType.STRIPED, TableType.HOVER)) {
-            addHeaderCell(sortingHeaderCell(tr("First name"), Sort.FN))
-            addHeaderCell(sortingHeaderCell(tr("Last name"), Sort.LN))
-            addHeaderCell(sortingHeaderCell(tr("E-mail"), Sort.E))
-            addHeaderCell(sortingHeaderCell("", Sort.F))
+            addHeaderCell(sortingHeaderCell(tr("Created at"), Sort.CA))
             addHeaderCell(HeaderCell(""))
         }
 
@@ -56,19 +53,11 @@ object ListPanel : SimplePanel() {
         }
 
         dataContainer(
-            Model.addresses, { address, index, _ ->
+            Model.apiKeys, { key, index, _ ->
                 Row {
-                    cell(address.firstName)
-                    cell(address.lastName)
+                    cell(key.key)
                     cell {
-                        address.email?.let {
-                            link(it, "mailto:$it") {
-                                fontStyle = FontStyle.ITALIC
-                            }
-                        }
-                    }
-                    cell {
-                        address.favourite?.let {
+                        key.favourite?.let {
                             if (it) icon("far fa-heart") {
                                 title = tr("Favourite")
                             }
@@ -80,7 +69,7 @@ object ListPanel : SimplePanel() {
                             onEvent {
                                 click = { e ->
                                     e.stopPropagation()
-                                    Confirm.show("Are you sure?", "Do you want to delete this address?") {
+                                    Confirm.show("Are you sure?", "Do you want to delete this Api Key?") {
                                         EditPanel.delete(index)
                                     }
                                 }

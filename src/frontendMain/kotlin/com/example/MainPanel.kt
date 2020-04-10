@@ -12,7 +12,7 @@ import kotlin.browser.document
 
 object MainPanel : HPanel(justify = FlexJustify.SPACEBETWEEN) {
     init {
-        button(tr("Add new address"), "fas fa-plus", style = ButtonStyle.PRIMARY).onClick {
+        button(tr("Add new api key"), "fas fa-plus", style = ButtonStyle.PRIMARY).onClick {
             EditPanel.add()
         }
         dataContainer(Model.profile, { profile, _, _ ->
