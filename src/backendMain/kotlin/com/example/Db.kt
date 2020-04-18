@@ -8,6 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils.create
+import org.jetbrains.exposed.sql.SchemaUtils.drop
 import org.jetbrains.exposed.sql.Transaction
 import org.jetbrains.exposed.sql.transactions.transaction
 import java.math.BigDecimal
@@ -18,8 +19,9 @@ object Db {
     fun init(config: ApplicationConfig) {
         Database.connect(hikari(config))
         transaction {
+            // drop(UserDao, ApiKeysDao)
             create(UserDao)
-            create(AddressDao)
+            create(ApiKeysDao)
         }
     }
 
@@ -32,6 +34,7 @@ object Db {
         hikariConfig.maximumPoolSize = 3
         hikariConfig.isAutoCommit = false
         hikariConfig.transactionIsolation = "TRANSACTION_REPEATABLE_READ"
+
         return HikariDataSource(hikariConfig)
     }
 

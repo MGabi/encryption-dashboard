@@ -8,60 +8,60 @@ import pl.treksoft.kvision.utils.syncWithList
 
 object Model {
 
-    private val addressService = AddressService()
+    private val apiKeysService  = ApiKeysService()
     private val profileService = ProfileService()
     private val registerProfileService = RegisterProfileService()
 
-    val addresses: ObservableList<Address> = observableListOf()
+    val apiKeys: ObservableList<ApiKey> = observableListOf()
     val profile: ObservableList<Profile> = observableListOf(Profile())
 
     var search: String? = null
         set(value) {
             field = value
             GlobalScope.launch {
-                getAddressList()
+                getApiKeysList()
             }
         }
     var types: String = "all"
         set(value) {
             field = value
             GlobalScope.launch {
-                getAddressList()
+                getApiKeysList()
             }
         }
-    var sort = Sort.FN
+    var sort = Sort.CA
         set(value) {
             field = value
             GlobalScope.launch {
-                getAddressList()
+                getApiKeysList()
             }
         }
 
-    suspend fun getAddressList() {
+    suspend fun getApiKeysList() {
         Security.withAuth {
-            val newAddresses = addressService.getAddressList(search, types, sort)
-            addresses.syncWithList(newAddresses)
+            val newApiKeys = apiKeysService.getApiKeysList(search, types, sort)
+            apiKeys.syncWithList(newApiKeys)
         }
     }
 
-    suspend fun addAddress(address: Address) {
+    suspend fun addApiKey(apiKey: ApiKey) {
         Security.withAuth {
-            addressService.addAddress(address)
-            getAddressList()
+            apiKeysService.getApiKey(apiKey)
+            getApiKeysList()
         }
     }
 
-    suspend fun updateAddress(address: Address) {
+    suspend fun updateApiKey(apiKey: ApiKey) {
         Security.withAuth {
-            addressService.updateAddress(address)
-            getAddressList()
+            apiKeysService.updateApiKey(apiKey)
+            getApiKeysList()
         }
     }
 
-    suspend fun deleteAddress(id: Int): Boolean {
+    suspend fun deleteApiKey(id: Int): Boolean {
         return Security.withAuth {
-            val result = addressService.deleteAddress(id)
-            getAddressList()
+            val result = apiKeysService.deleteApiKey(id)
+            getApiKeysList()
             result
         }
     }
