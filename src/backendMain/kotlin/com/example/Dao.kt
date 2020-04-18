@@ -1,12 +1,12 @@
 package com.example
 
+import com.mgabbi.encryption.lib.Algorithm
 import org.jetbrains.exposed.sql.ReferenceOption
 import org.jetbrains.exposed.sql.Table
 
 object ApiKeysDao : Table("apiKeys") {
     val id = integer("id").primaryKey().autoIncrement()
     val key = varchar("key", 255).nullable()
-    val encryptionType = enumeration("encryptionType", EncryptionTypes::class).nullable()
     val favourite = bool("favourite")
     val createdAt = datetime("created_at").nullable()
     val userId = reference("user_id", UserDao.id, ReferenceOption.CASCADE, ReferenceOption.CASCADE)

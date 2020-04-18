@@ -30,10 +30,9 @@ object EditPanel : StackPanel() {
 
         formPanel = formPanel {
             add(ApiKey::key, Text(label = "${tr("Api key")}:").apply { maxlength = 255 })
-            add(
-                ApiKey::encryptionType,
-                SimpleSelect(options = EncryptionTypes.pairs, label = "Encryption type")
-            )
+//            add(
+//                SimpleSelect(options = listOf("SHA" to "SHA"), label = "Encryption type")
+//            )
             add(ApiKey::favourite, CheckBox(label = tr("Mark as favourite")))
 
             add(HPanel(spacing = 10) {
@@ -62,7 +61,6 @@ object EditPanel : StackPanel() {
 
     fun edit(index: Int) {
         val key = Model.apiKeys[index]
-        println("Editing: $key")
         formPanel.setData(key)
         open(key.id)
     }

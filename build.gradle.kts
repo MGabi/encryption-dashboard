@@ -128,6 +128,7 @@ kotlin {
                 implementation("commons-codec:commons-codec:$commonsCodecVersion")
                 implementation("com.axiomalaska:jdbc-named-parameters:$jdbcNamedParametersVersion")
                 implementation("com.github.andrewoma.kwery:core:$kweryVersion")
+                implementation("com.mgabbi.encryption.lib:encryption-lib:1.1")
             }
         }
         val backendTest by getting {

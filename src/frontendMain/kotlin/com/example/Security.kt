@@ -27,6 +27,7 @@ class LoginWindow : Dialog<Credentials>(closeButton = false, escape = false, ani
     private val cancelButton: Button
 
     init {
+        console.log("Init login form")
         loginPanel = formPanel {
             add(Credentials::username, Text(label = "${tr("Login")}:"), required = true)
             add(Credentials::password, Password(label = "${tr("Password")}:"), required = true)
@@ -81,6 +82,7 @@ class LoginWindow : Dialog<Credentials>(closeButton = false, escape = false, ani
     }
 
     private fun showRegisterForm() {
+        console.log("Show register form")
         loginPanel.hide()
         registerPanel.show()
         registerPanel.clearData()
@@ -91,6 +93,7 @@ class LoginWindow : Dialog<Credentials>(closeButton = false, escape = false, ani
     }
 
     private fun hideRegisterForm() {
+        console.log("Hide register form")
         loginPanel.show()
         registerPanel.hide()
         loginButton.show()

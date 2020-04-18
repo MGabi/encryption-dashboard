@@ -19,7 +19,6 @@ data class Profile(
 data class ApiKey(
     val id: Int? = 0,
     val key: String? = null,
-    val encryptionType: String? = null,
     val favourite: Boolean? = false,
     val createdAt: LocalDateTime? = null,
     val userId: Int? = null

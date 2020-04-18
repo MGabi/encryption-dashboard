@@ -62,7 +62,6 @@ actual class ApiKeysService : IApiKeysService {
         val key = dbQuery {
             (ApiKeysDao.insert {
                 it[key] = apiKey.key
-                it[encryptionType] = EncryptionTypes.valueOf(apiKey.encryptionType ?: return@insert)
                 it[favourite] = apiKey.favourite ?: false
                 it[createdAt] = DateTime()
                 it[userId] = profile.id!!
@@ -78,7 +77,6 @@ actual class ApiKeysService : IApiKeysService {
                 dbQuery {
                     ApiKeysDao.update({ ApiKeysDao.id eq it }) {
                         it[key] = apiKey.key
-                        it[encryptionType] = EncryptionTypes.valueOf(apiKey.encryptionType ?: return@update)
                         it[favourite] = apiKey.favourite ?: false
                         it[createdAt] = oldApiKey.createdAt
                             ?.let { DateTime(java.util.Date.from(it.atZone(ZoneId.systemDefault()).toInstant())) }
@@ -106,7 +104,6 @@ actual class ApiKeysService : IApiKeysService {
         ApiKey(
             id = row[ApiKeysDao.id],
             key = row[ApiKeysDao.key],
-            encryptionType = row[ApiKeysDao.encryptionType]?.toString(),
             favourite = row[ApiKeysDao.favourite],
             createdAt = row[ApiKeysDao.createdAt]?.millis?.let { java.util.Date(it) }?.toInstant()
                 ?.atZone(ZoneId.systemDefault())?.toLocalDateTime(),
@@ -117,7 +114,6 @@ actual class ApiKeysService : IApiKeysService {
         ApiKey(
             id = rs.getInt(ApiKeysDao.id.name),
             key = rs.getString(ApiKeysDao.key.name),
-            encryptionType = rs.getString(ApiKeysDao.encryptionType.name),
             favourite = rs.getBoolean(ApiKeysDao.favourite.name),
             createdAt = rs.getTimestamp(ApiKeysDao.createdAt.name)?.toInstant()
                 ?.atZone(ZoneId.systemDefault())?.toLocalDateTime(),

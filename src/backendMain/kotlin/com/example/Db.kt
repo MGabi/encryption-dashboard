@@ -19,7 +19,7 @@ object Db {
     fun init(config: ApplicationConfig) {
         Database.connect(hikari(config))
         transaction {
-            //drop(ApiKeysDao)
+            // drop(UserDao, ApiKeysDao)
             create(UserDao)
             create(ApiKeysDao)
         }
