@@ -27,7 +27,6 @@ class LoginWindow : Dialog<Credentials>(closeButton = false, escape = false, ani
     private val cancelButton: Button
 
     init {
-        console.log("Init login form")
         loginPanel = formPanel {
             add(Credentials::username, Text(label = "${tr("Login")}:"), required = true)
             add(Credentials::password, Password(label = "${tr("Password")}:"), required = true)
@@ -45,11 +44,11 @@ class LoginWindow : Dialog<Credentials>(closeButton = false, escape = false, ani
             add(
                 Profile::password, Password(label = "${tr("Password")}:"), required = true,
                 validatorMessage = { "Password too short" }) {
-                (it.getValue()?.length ?: 0) >= 5
+                (it.getValue()?.length ?: 0) >= 8
             }
             add(Profile::password2, Password(label = "${tr("Confirm password")}:"), required = true,
                 validatorMessage = { tr("Password too short") }) {
-                (it.getValue()?.length ?: 0) >= 5
+                (it.getValue()?.length ?: 0) >= 8
             }
             validator = {
                 val result = it[Profile::password] == it[Profile::password2]
@@ -82,7 +81,6 @@ class LoginWindow : Dialog<Credentials>(closeButton = false, escape = false, ani
     }
 
     private fun showRegisterForm() {
-        console.log("Show register form")
         loginPanel.hide()
         registerPanel.show()
         registerPanel.clearData()
@@ -93,7 +91,6 @@ class LoginWindow : Dialog<Credentials>(closeButton = false, escape = false, ani
     }
 
     private fun hideRegisterForm() {
-        console.log("Hide register form")
         loginPanel.show()
         registerPanel.hide()
         loginButton.show()

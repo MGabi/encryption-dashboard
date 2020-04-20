@@ -15,15 +15,12 @@ object MainPanel : HPanel(justify = FlexJustify.SPACEBETWEEN) {
         button(tr("Add new api key"), "fas fa-plus", style = ButtonStyle.PRIMARY).onClick {
             EditPanel.add()
         }
-        console.log("Creating main panel")
         dataContainer(Model.profile, { profile, _, _ ->
             if (profile.name != null) {
-                console.log("User logged in")
                 Button("Logout: ${profile.name}", "fas fa-sign-out-alt", style = ButtonStyle.WARNING).onClick {
                     document.location?.href = "/logout"
                 }
             } else {
-                console.log("No user")
                 Span("")
             }
         })
