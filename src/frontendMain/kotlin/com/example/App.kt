@@ -18,13 +18,6 @@ class App : Application() {
     }
 
     override fun start() {
-        I18n.manager =
-            DefaultI18nManager(
-                mapOf(
-                    "en" to require("i18n/messages-en.json"),
-                    "pl" to require("i18n/messages-pl.json")
-                )
-            )
         root("kvapp") {
             splitPanel {
                 width = 100.perc
