@@ -28,6 +28,7 @@ class App : Application() {
         }
         GlobalScope.launch {
             Model.getApiKeysList()
+            Model.getEncryptionTypesList()
         }
     }
 }

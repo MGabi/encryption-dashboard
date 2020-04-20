@@ -4,6 +4,7 @@ import com.example.Db.dbQuery
 import com.example.Db.queryList
 import com.github.andrewoma.kwery.core.builder.query
 import com.google.inject.Inject
+import com.mgabbi.encryption.lib.Algorithm
 import io.ktor.application.ApplicationCall
 import io.ktor.sessions.get
 import io.ktor.sessions.sessions
@@ -15,6 +16,7 @@ import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.update
 import org.joda.time.DateTime
+import pl.treksoft.kvision.remote.RemoteOption
 import java.sql.ResultSet
 import java.time.ZoneId
 
@@ -93,6 +95,11 @@ actual class ApiKeysService : IApiKeysService {
             ApiKeysDao.deleteWhere { (ApiKeysDao.userId eq profile.id!!) and (ApiKeysDao.id eq id) } > 0
         }
     }
+
+    override suspend fun getEncryptionTypes(search: String?, initial: String?, s: String?): List<RemoteOption> =
+        call.withProfile {
+            Algorithm.values().map { RemoteOption(it.toString()) }
+        }
 
     private suspend fun getApiKey(id: Int): ApiKey? = dbQuery {
         ApiKeysDao.select {

@@ -1,6 +1,5 @@
 package com.example
 
-import com.mgabbi.encryption.lib.Algorithm
 import org.jetbrains.exposed.sql.ReferenceOption
 import org.jetbrains.exposed.sql.Table
 

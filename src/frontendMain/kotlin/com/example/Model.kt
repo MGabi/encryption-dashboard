@@ -2,18 +2,20 @@ package com.example
 
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import pl.treksoft.kvision.remote.RemoteOption
 import pl.treksoft.kvision.state.ObservableList
 import pl.treksoft.kvision.state.observableListOf
 import pl.treksoft.kvision.utils.syncWithList
 
 object Model {
 
-    private val apiKeysService  = ApiKeysService()
+    private val apiKeysService = ApiKeysService()
     private val profileService = ProfileService()
     private val registerProfileService = RegisterProfileService()
 
     val apiKeys: ObservableList<ApiKey> = observableListOf()
     val profile: ObservableList<Profile> = observableListOf(Profile())
+    val encryptionTypes: ObservableList<RemoteOption> = observableListOf()
 
     var search: String? = null
         set(value) {
@@ -40,7 +42,15 @@ object Model {
     suspend fun getApiKeysList() {
         Security.withAuth {
             val newApiKeys = apiKeysService.getApiKeysList(search, types, sort)
+            console.log("List: $newApiKeys")
             apiKeys.syncWithList(newApiKeys)
+        }
+    }
+
+    suspend fun getEncryptionTypesList() {
+        Security.withAuth {
+            val newEncTypes = apiKeysService.getEncryptionTypes()
+            encryptionTypes.syncWithList(newEncTypes)
         }
     }
 
