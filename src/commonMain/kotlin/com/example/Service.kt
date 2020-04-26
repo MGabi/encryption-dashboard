@@ -13,7 +13,7 @@ interface IApiKeysService {
     suspend fun getApiKey(apiKey: ApiKey): ApiKey
     suspend fun updateApiKey(apiKey: ApiKey): ApiKey
     suspend fun deleteApiKey(id: Int): Boolean
-    suspend fun getEncryptionTypes(search: String? = "", initial: String? = "", s: String? = ""): List<RemoteOption>
+    suspend fun getEncryptionTypes(search: String? = "", initial: String? = "AES", s: String? = ""): List<RemoteOption>
 }
 
 @KVService

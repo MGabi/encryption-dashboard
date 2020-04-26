@@ -6,17 +6,13 @@ import pl.treksoft.kvision.core.onEvent
 import pl.treksoft.kvision.form.FormPanel
 import pl.treksoft.kvision.form.check.CheckBox
 import pl.treksoft.kvision.form.formPanel
-import pl.treksoft.kvision.form.select.AjaxOptions
-import pl.treksoft.kvision.form.select.Select
 import pl.treksoft.kvision.form.select.SelectRemote
-import pl.treksoft.kvision.form.select.SimpleSelect
 import pl.treksoft.kvision.form.text.Text
 import pl.treksoft.kvision.html.ButtonStyle
 import pl.treksoft.kvision.html.button
 import pl.treksoft.kvision.i18n.I18n.tr
 import pl.treksoft.kvision.panel.HPanel
 import pl.treksoft.kvision.panel.StackPanel
-import pl.treksoft.kvision.remote.RemoteOption
 import pl.treksoft.kvision.utils.ENTER_KEY
 import pl.treksoft.kvision.utils.px
 
@@ -30,13 +26,27 @@ object EditPanel : StackPanel() {
         padding = 10.px
 
         formPanel = formPanel {
-            add(ApiKey::key, Text(label = "${tr("Api key")}:").apply { maxlength = 255 })
             add(
+                ApiKey::name,
+                Text(label = "${tr("Api key name")}:"),
+                required = true,
+                validatorMessage = { "You need to enter a name for your key" }
+            )
+            add(
+                ApiKey::key,
+                Text(label = "KEY: "),
+                required = false
+            )
+            add(
+                ApiKey::type,
                 SelectRemote(
                     ApiKeysServiceManager,
                     function = IApiKeysService::getEncryptionTypes,
-                    label = "Select encryption type"
-                )
+                    label = "Select encryption type",
+                    value = "AES"
+                ),
+                required = true,
+                validatorMessage = { "You need to select an encryption type" }
             )
 
             add(ApiKey::favourite, CheckBox(label = tr("Mark as favourite")))

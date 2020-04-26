@@ -5,6 +5,8 @@ import com.example.Db.queryList
 import com.github.andrewoma.kwery.core.builder.query
 import com.google.inject.Inject
 import com.mgabbi.encryption.lib.Algorithm
+import com.mgabbi.encryption.lib.Encryption
+import com.mgabbi.encryption.lib.createAPIKey
 import io.ktor.application.ApplicationCall
 import io.ktor.sessions.get
 import io.ktor.sessions.sessions
@@ -63,7 +65,9 @@ actual class ApiKeysService : IApiKeysService {
     override suspend fun getApiKey(apiKey: ApiKey) = call.withProfile { profile ->
         val key = dbQuery {
             (ApiKeysDao.insert {
-                it[key] = apiKey.key
+                it[key] = createAPIKey(Algorithm.valueOf(apiKey.type))
+                it[type] = apiKey.type
+                it[name] = apiKey.name
                 it[favourite] = apiKey.favourite ?: false
                 it[createdAt] = DateTime()
                 it[userId] = profile.id!!
@@ -74,11 +78,13 @@ actual class ApiKeysService : IApiKeysService {
     }
 
     override suspend fun updateApiKey(apiKey: ApiKey) = call.withProfile { profile ->
-        apiKey.id?.let {
-            getApiKey(it)?.let { oldApiKey ->
+        apiKey.id?.let { keyID ->
+            getApiKey(keyID)?.let { oldApiKey ->
                 dbQuery {
-                    ApiKeysDao.update({ ApiKeysDao.id eq it }) {
-                        it[key] = apiKey.key
+                    ApiKeysDao.update({ ApiKeysDao.id eq keyID }) {
+                        it[key] = createAPIKey(Algorithm.valueOf(apiKey.type))
+                        it[type] = apiKey.type
+                        it[name] = apiKey.name
                         it[favourite] = apiKey.favourite ?: false
                         it[createdAt] = oldApiKey.createdAt
                             ?.let { DateTime(java.util.Date.from(it.atZone(ZoneId.systemDefault()).toInstant())) }
@@ -86,7 +92,7 @@ actual class ApiKeysService : IApiKeysService {
                     }
                 }
             }
-            getApiKey(it)
+            getApiKey(keyID)
         } ?: throw IllegalArgumentException("The ID of this API key is not set")
     }
 
@@ -111,6 +117,8 @@ actual class ApiKeysService : IApiKeysService {
         ApiKey(
             id = row[ApiKeysDao.id],
             key = row[ApiKeysDao.key],
+            type = row[ApiKeysDao.type],
+            name = row[ApiKeysDao.name],
             favourite = row[ApiKeysDao.favourite],
             createdAt = row[ApiKeysDao.createdAt]?.millis?.let { java.util.Date(it) }?.toInstant()
                 ?.atZone(ZoneId.systemDefault())?.toLocalDateTime(),
@@ -121,6 +129,8 @@ actual class ApiKeysService : IApiKeysService {
         ApiKey(
             id = rs.getInt(ApiKeysDao.id.name),
             key = rs.getString(ApiKeysDao.key.name),
+            type = rs.getString(ApiKeysDao.type.name),
+            name = rs.getString(ApiKeysDao.name.name),
             favourite = rs.getBoolean(ApiKeysDao.favourite.name),
             createdAt = rs.getTimestamp(ApiKeysDao.createdAt.name)?.toInstant()
                 ?.atZone(ZoneId.systemDefault())?.toLocalDateTime(),

@@ -55,7 +55,7 @@ object ListPanel : SimplePanel() {
         dataContainer(
             Model.apiKeys, { key, index, _ ->
                 Row {
-                    cell(key.key)
+                    cell(key.name)
                     cell {
                         key.favourite?.let {
                             if (it) icon("far fa-heart") {

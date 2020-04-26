@@ -18,7 +18,9 @@ data class Profile(
 @Serializable
 data class ApiKey(
     val id: Int? = 0,
-    val key: String? = null,
+    val key: String? = "",
+    val type: String,
+    val name: String? = null,
     val favourite: Boolean? = false,
     val createdAt: LocalDateTime? = null,
     val userId: Int? = null
