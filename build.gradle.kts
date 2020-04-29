@@ -105,7 +105,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("stdlib-common"))
                 api("pl.treksoft:kvision-server-ktor:$kvisionVersion")
-                implementation("com.mgabbi.encryption.lib:encryption-lib:1.1")
+                implementation("com.mgabbi.encryption.lib:encryption-lib:1.5")
             }
             kotlin.srcDir("build/generated-src/common")
         }
