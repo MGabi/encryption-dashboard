@@ -78,7 +78,7 @@ object ListPanel : SimplePanel() {
                     }
                     onEvent {
                         click = {
-                            EditPanel.edit(index)
+                            showApiKeyDetails(index)
                         }
                     }
                 }

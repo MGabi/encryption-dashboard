@@ -42,7 +42,6 @@ object Model {
     suspend fun getApiKeysList() {
         Security.withAuth {
             val newApiKeys = apiKeysService.getApiKeysList(search, types, sort)
-            console.log("List: $newApiKeys")
             apiKeys.syncWithList(newApiKeys)
         }
     }

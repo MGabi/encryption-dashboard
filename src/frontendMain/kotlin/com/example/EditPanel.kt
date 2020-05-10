@@ -17,9 +17,6 @@ import pl.treksoft.kvision.utils.ENTER_KEY
 import pl.treksoft.kvision.utils.px
 
 object EditPanel : StackPanel() {
-
-    private var editingId: Int? = null
-
     private val formPanel: FormPanel<ApiKey>
 
     init {
@@ -29,28 +26,19 @@ object EditPanel : StackPanel() {
             add(
                 ApiKey::name,
                 Text(label = "${tr("Api key name")}:"),
-                required = true,
-                validatorMessage = { "You need to enter a name for your key" }
-            )
-            add(
-                ApiKey::key,
-                Text(label = "KEY: "),
-                required = false
+                required = true
             )
             add(
                 ApiKey::type,
                 SelectRemote(
                     ApiKeysServiceManager,
                     function = IApiKeysService::getEncryptionTypes,
-                    label = "Select encryption type",
-                    value = "AES"
+                    label = "Select encryption type"
                 ),
-                required = true,
-                validatorMessage = { "You need to select an encryption type" }
+                required = true
             )
 
             add(ApiKey::favourite, CheckBox(label = tr("Mark as favourite")))
-
             add(HPanel(spacing = 10) {
                 button(tr("Save"), "fas fa-check", ButtonStyle.PRIMARY).onClick {
                     save()
@@ -72,24 +60,14 @@ object EditPanel : StackPanel() {
 
     fun add() {
         formPanel.clearData()
-        open(null)
-    }
-
-    fun edit(index: Int) {
-        val key = Model.apiKeys[index]
-        formPanel.setData(key)
-        open(key.id)
+        open()
     }
 
     private fun save() {
         GlobalScope.launch {
             if (formPanel.validate()) {
                 val apiKey = formPanel.getData()
-                if (editingId != null) {
-                    Model.updateApiKey(apiKey.copy(id = editingId))
-                } else {
-                    Model.addApiKey(apiKey)
-                }
+                Model.addApiKey(apiKey)
                 close()
             }
         }
@@ -104,15 +82,12 @@ object EditPanel : StackPanel() {
         }
     }
 
-    private fun open(editingId: Int?) {
-        this.editingId = editingId
+    private fun open() {
         activeChild = formPanel
-        formPanel.validate()
         formPanel.getControl(ApiKey::key)?.focus()
     }
 
     private fun close() {
-        editingId = null
         activeChild = MainPanel
     }
 }
