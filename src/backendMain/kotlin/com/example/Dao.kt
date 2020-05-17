@@ -5,8 +5,8 @@ import org.jetbrains.exposed.sql.Table
 
 object ApiKeysDao : Table("apiKeys") {
     val id = integer("id").primaryKey().autoIncrement()
-    val key = varchar("key", 255)
-    val type = varchar("type", 10)
+    val key = varchar("key", 512)
+    val type = varchar("type", 64)
     val name = varchar("name", 255).nullable()
     val favourite = bool("favourite")
     val createdAt = datetime("created_at").nullable()

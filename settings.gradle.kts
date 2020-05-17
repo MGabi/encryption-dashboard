@@ -17,4 +17,4 @@ pluginManagement {
         }
     }
 }
-rootProject.name = "dashboard-ktor"
+rootProject.name = "encryption-dashboard"
