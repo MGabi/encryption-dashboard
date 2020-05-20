@@ -1,6 +1,8 @@
 package com.example
 
 import com.example.Db.dbQuery
+import com.example.crypto.postSecure
+import com.example.models.SimpleRequest
 import com.example.models.SimpleResponse
 import com.google.gson.Gson
 import com.mgabbi.encryption.lib.crypto.Encryption
@@ -29,6 +31,7 @@ import io.ktor.sessions.cookie
 import io.ktor.sessions.get
 import io.ktor.sessions.sessions
 import io.ktor.sessions.set
+import io.ktor.util.pipeline.PipelinePhase
 import kotlinx.serialization.ImplicitReflectionSerializer
 import org.apache.commons.codec.digest.DigestUtils
 import org.jetbrains.exposed.sql.and
@@ -97,16 +100,10 @@ fun Application.main() {
             applyRoutes(ApiKeysServiceManager)
             applyRoutes(ProfileServiceManager)
         }
-        post("api/testEncryption") {
-            val received = call.receive<ByteArray>()
-            val decrypted = Encryption.decode(received)
-            println("testEncryption >>>> Received: ${decrypted}")
+        postSecure<SimpleRequest, SimpleResponse>("api/testEncryption") {
+            val returned = SimpleResponse("received: ${it.request}")
 
-            val response = SimpleResponse("received: $decrypted")
-            val responseJson = Gson().toJson(response)
-            val encryptedResponse = Encryption.encode(responseJson)
-            println("testEncryption >>>> Response: {\"received\": $decrypted}")
-            call.respond(encryptedResponse)
+            returned
         }
     }
 }
