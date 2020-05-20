@@ -5,7 +5,7 @@ import com.example.Db.queryList
 import com.github.andrewoma.kwery.core.builder.query
 import com.google.inject.Inject
 import com.mgabbi.encryption.lib.Algorithm
-import com.mgabbi.encryption.lib.Encryption
+import com.mgabbi.encryption.lib.key.KeyUtils
 import io.ktor.application.ApplicationCall
 import io.ktor.sessions.get
 import io.ktor.sessions.sessions
@@ -64,7 +64,7 @@ actual class ApiKeysService : IApiKeysService {
     override suspend fun getApiKey(apiKey: ApiKey) = call.withProfile { profile ->
         val key = dbQuery {
             (ApiKeysDao.insert {
-                it[key] = Encryption.createAPIKey(Algorithm.valueOf(apiKey.type))
+                it[key] = KeyUtils.createAPIKey(Algorithm.valueOf(apiKey.type))
                 it[type] = apiKey.type
                 it[name] = apiKey.name
                 it[favourite] = apiKey.favourite ?: false
@@ -81,7 +81,7 @@ actual class ApiKeysService : IApiKeysService {
             getApiKey(keyID)?.let { oldApiKey ->
                 dbQuery {
                     ApiKeysDao.update({ ApiKeysDao.id eq keyID }) {
-                        it[key] = Encryption.createAPIKey(Algorithm.valueOf(apiKey.type))
+                        it[key] = KeyUtils.createAPIKey(Algorithm.valueOf(apiKey.type))
                         it[type] = apiKey.type
                         it[name] = apiKey.name
                         it[favourite] = apiKey.favourite ?: false

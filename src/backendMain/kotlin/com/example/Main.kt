@@ -1,6 +1,9 @@
 package com.example
 
 import com.example.Db.dbQuery
+import com.example.models.SimpleResponse
+import com.google.gson.Gson
+import com.mgabbi.encryption.lib.crypto.Encryption
 import io.ktor.application.Application
 import io.ktor.application.call
 import io.ktor.application.install
@@ -13,6 +16,7 @@ import io.ktor.features.CallLogging
 import io.ktor.features.Compression
 import io.ktor.features.DefaultHeaders
 import io.ktor.http.HttpStatusCode
+import io.ktor.request.receive
 import io.ktor.response.respond
 import io.ktor.response.respondRedirect
 import io.ktor.routing.get
@@ -25,6 +29,7 @@ import io.ktor.sessions.cookie
 import io.ktor.sessions.get
 import io.ktor.sessions.sessions
 import io.ktor.sessions.set
+import kotlinx.serialization.ImplicitReflectionSerializer
 import org.apache.commons.codec.digest.DigestUtils
 import org.jetbrains.exposed.sql.and
 import org.jetbrains.exposed.sql.select
@@ -32,6 +37,7 @@ import pl.treksoft.kvision.remote.applyRoutes
 import pl.treksoft.kvision.remote.kvisionInit
 import kotlin.collections.set
 
+@ImplicitReflectionSerializer
 fun Application.main() {
     install(Compression)
     install(DefaultHeaders)
@@ -44,6 +50,7 @@ fun Application.main() {
     }
     kvisionInit()
     Db.init(environment.config)
+    Encryption.init("eyJ0eXBlIjoiQUVTX0NCQ19QS0NTNVBBRERJTkciLCJwS2V5IjoiZ21UeE1QRm03SkFDYkVzcThzdi94NTZMVWdxZjJ5NldlQno1VllTOVpSWVx1MDAzZCIsIml2IjpbMTAxLC0zMSwyNywxMTAsLTEyOCwyMSwxMTYsLTMwLDEyNywtOSwxMTksNjcsLTM5LC0xMjQsLTkwLC0zNl19")
 
     install(Authentication) {
         form {
@@ -89,6 +96,17 @@ fun Application.main() {
             }
             applyRoutes(ApiKeysServiceManager)
             applyRoutes(ProfileServiceManager)
+        }
+        post("api/testEncryption") {
+            val received = call.receive<ByteArray>()
+            val decrypted = Encryption.decode(received)
+            println("testEncryption >>>> Received: ${decrypted}")
+
+            val response = SimpleResponse("received: $decrypted")
+            val responseJson = Gson().toJson(response)
+            val encryptedResponse = Encryption.encode(responseJson)
+            println("testEncryption >>>> Response: {\"received\": $decrypted}")
+            call.respond(encryptedResponse)
         }
     }
 }

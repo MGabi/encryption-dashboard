@@ -105,7 +105,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("stdlib-common"))
                 api("pl.treksoft:kvision-server-ktor:$kvisionVersion")
-                implementation("com.mgabbi.encryption.lib:encryption-lib:1.6")
+                implementation("com.mgabbi.encryption.lib:encryption-lib:1.8")
             }
             kotlin.srcDir("build/generated-src/common")
         }
@@ -129,6 +129,8 @@ kotlin {
                 implementation("commons-codec:commons-codec:$commonsCodecVersion")
                 implementation("com.axiomalaska:jdbc-named-parameters:$jdbcNamedParametersVersion")
                 implementation("com.github.andrewoma.kwery:core:$kweryVersion")
+
+                implementation("com.google.code.gson:gson:2.8.6")
             }
         }
         val backendTest by getting {
