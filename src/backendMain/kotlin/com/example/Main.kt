@@ -102,8 +102,12 @@ fun Application.main() {
         }
         postSecure<SimpleRequest, SimpleResponse>("api/testEncryption") {
             val returned = SimpleResponse("received: ${it.request}")
-
             returned
+        }
+        post("api/testRawResponse") {
+            val received = call.receive<SimpleRequest>()
+            val returned = SimpleResponse("raw: ${received.request}")
+            call.respond(returned)
         }
     }
 }
