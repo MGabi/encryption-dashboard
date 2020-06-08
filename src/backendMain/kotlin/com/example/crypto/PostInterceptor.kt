@@ -19,7 +19,7 @@ inline fun <reified R : Any, reified O : Any> Route.postSecure(
             val received = call.receive<ByteArray>()
 
             // Decrypt the request
-            val decrypted = Encryption.decode(received)
+            val decrypted = Encryption.decrypt(received)
             val requestJson = gson.fromJson(decrypted, R::class.java)
 
             println("received >>>> $received")
@@ -29,7 +29,7 @@ inline fun <reified R : Any, reified O : Any> Route.postSecure(
 
             // Encrypt the response
             val responseJson = gson.toJson(response)
-            val encrypted = Encryption.encode(responseJson)
+            val encrypted = Encryption.encrypt(responseJson)
 
             println("returned >>>> $response")
             println("returned >>>> $encrypted")
